@@ -5,6 +5,31 @@
 //Since we are using import here we need to set up and to that add 'type: module' in package.json to prevent errors
 import express from 'express'
 
+//Connecting with DATABASE
+//We are going to use Mangoose - to install it - "npm i mongoose" in the root folder i.e AUTHAPP
+//after installing import it
+import mongoose from 'mongoose'
+
+//the dotenv to use env folder import and then configure it to work
+import dotenv from 'dotenv'
+dotenv.config();
+
+
+
+//--Connecting out Database created in the MongoDB website
+//after importing connect the mongoose
+//for that use mongoose.connect(get uri from mongoose website)
+//in the uri keep password and app name after .net/
+//however this is not the best practice to add uri like this as ppl can see passwords and all
+//we create a env file and then use process.env and the variable that has our URI from env
+//but for this to work (dev env to work)we need to install package - 'npm i dotenv' and import it
+mongoose.connect(process.env.MONGO).then(() => {
+    console.log("MongoBD is Connected and Running")
+}).catch((err) => {
+    console.log(err)
+})
+//to check if we are connected or not -- using then and catch we check and if there is error we catch it using catch
+
 // -----Setting up auto run when changes are made in backend----------
 //here if any changes are made for it to reflext we need to re run the entire server - so we install a package called nodemon - using 'npm i nodemon
 // npm i nodemon - automatically detects the changes in the backend and restarts the server
@@ -15,6 +40,5 @@ import express from 'express'
 //   },
 const app = express()
 app.listen(3000, () => {
-
     console.log("Server is listening to port 3000!")
 })

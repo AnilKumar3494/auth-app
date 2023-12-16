@@ -42,8 +42,9 @@ mongoose.connect(process.env.MONGO).then(() => {
 //     "start": "node api/index.js"
 //   },
 const app = express()
-app.listen(3000, () => {
-    console.log("Server is listening to port 3000!")
+app.listen(4000, () => {
+    console.log("Server is listening to port 4000!")
+    //this is from app.listen()
 })
 
 

@@ -14,6 +14,9 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 dotenv.config();
 
+//importing route from user.route.js -- we have exporeted it as default so we can import it with any name
+import userRoute from './routes/user.route.js'
+
 
 //DATABASE
 //--Connecting out Database created in the MongoDB website
@@ -42,3 +45,18 @@ const app = express()
 app.listen(3000, () => {
     console.log("Server is listening to port 3000!")
 })
+
+
+// //Making API ROUTE and checking its work
+// //Later this will be created in seperate folder
+// //to make this more cleaner we create routes folder and shift this to user.route.js
+//'/' is the home page
+// app.get('/', (req, res) => {
+//     res.json({
+//         message: "API is running in localhost:3000",
+//     })
+// })
+
+//the move function is moved to route.user.js and is imported and used here as userRoute
+app.use("/api/user", userRoute)
+//but this can futher be modified 

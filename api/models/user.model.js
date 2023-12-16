@@ -18,6 +18,7 @@ const userSchema = new mongoose.Schema({
         required: true,
     }
 }, { timestamps: true })
+
 //timestamps can be later used to collect and store user data creation time and edit time
 
 //This is where model is created, stored and exported so that it can be used later
@@ -25,3 +26,4 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema)
 
 export default User
+

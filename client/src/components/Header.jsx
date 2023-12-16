@@ -6,6 +6,7 @@ export default function Header() {
   return (
     <div className="bg-slate-200">
       <div className="flex justify-between mx-auto px-6">
+        {/* //This link also makes header into anchor link */}
         <Link to="/">
           <h1 className="font-bold">Auth App</h1>
         </Link>

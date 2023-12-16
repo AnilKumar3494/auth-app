@@ -15,7 +15,7 @@ import dotenv from 'dotenv'
 dotenv.config();
 
 
-
+//DATABASE
 //--Connecting out Database created in the MongoDB website
 //after importing connect the mongoose
 //for that use mongoose.connect(get uri from mongoose website)

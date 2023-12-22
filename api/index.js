@@ -17,6 +17,9 @@ dotenv.config();
 //importing route from user.route.js -- we have exporeted it as default so we can import it with any name
 import userRoute from './routes/user.route.js'
 
+//authRoute import from auth.user
+import authRoute from './routes/auth.user.js'
+
 
 //DATABASE
 //--Connecting out Database created in the MongoDB website
@@ -47,6 +50,10 @@ app.listen(4000, () => {
     //this is from app.listen()
 })
 
+//we use this app.use(express.json()) to get data/input from insomniaa to get reflected in the auth.conroller -> req.body
+//this way we get the data but we need to save it into the database
+app.use(express.json());
+
 
 // //Making API ROUTE and checking its work
 // //Later this will be created in seperate folder
@@ -60,4 +67,6 @@ app.listen(4000, () => {
 
 //the move function is moved to route.user.js and is imported and used here as userRoute
 app.use("/api/user", userRoute)
-//but this can futher be modified 
+
+//this is sign-up API route - we seprate user from auth as it is very important 
+app.use('/api/auth', authRoute)

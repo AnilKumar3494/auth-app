@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 //creating a user schema model
 //Craete using method from mongoose Schema
+// these schema only accept strings
 const userSchema = new mongoose.Schema({
     username: {
         type: String,

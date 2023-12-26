@@ -13,7 +13,7 @@ const route = Express.Router();
 //     })
 // })
 // export default route
-// //the above could further be modified by shfiting the req and res to onother file so that all the contollers will be at the same place and making our files componented
+// //the above could further be modified by shfiting the req and res (logic) -- to another file so that all the contollers will be at the same place and making our files componented
 
 
 //use test from the controller

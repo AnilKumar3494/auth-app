@@ -18,7 +18,7 @@ dotenv.config();
 import userRoute from './routes/user.route.js'
 
 //authRoute import from auth.user
-import authRoute from './routes/auth.user.js'
+import authRoute from './routes/auth.route.js'
 
 
 //DATABASE

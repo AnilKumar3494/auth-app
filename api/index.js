@@ -54,7 +54,6 @@ app.listen(4000, () => {
 //this way we get the data but we need to save it into the database
 app.use(express.json());
 
-
 // //Making API ROUTE and checking its work
 // //Later this will be created in seperate folder
 // //to make this more cleaner we create routes folder and shift this to user.route.js
@@ -70,3 +69,19 @@ app.use("/api/user", userRoute)
 
 //this is sign-up API route - we seprate user from auth as it is very important 
 app.use('/api/auth', authRoute)
+
+//creating a middleware to catch errors, responses, requests and next
+//using next we can directly get the error and use it where needed
+app.use((err, req, res, next) => {
+    const statusCode = err.statusCode || 500;
+    const message = err.message || "Internal Servor Error";
+    const personalMsg = "This is the error catched by Middleware"
+    return res.status(statusCode).json({
+        success: false,
+        // personalMsg: personalMsg,
+        personalMsg,
+        error: message,
+        statusCode: statusCode,
+    })
+}
+)

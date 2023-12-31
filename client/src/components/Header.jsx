@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <div className="bg-slate-200">
+    <div className="bg-slate-200 py-3">
       <div className="flex justify-between mx-auto px-6">
         {/* //This link also makes header into anchor link */}
         <Link to="/">
@@ -12,13 +12,13 @@ export default function Header() {
         </Link>
         <ul className="flex gap-4 font-semibold">
           <Link to="/">
-            <li>Home</li>
+            <li className="hover:underline">Home</li>
           </Link>
           <Link to="/about">
-            <li>About</li>
+            <li className="hover:underline">About</li>
           </Link>
           <Link to="/sign-in">
-            <li>Sign In</li>
+            <li className="hover:underline">Sign In</li>
           </Link>
         </ul>
       </div>

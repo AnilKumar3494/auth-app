@@ -1,6 +1,6 @@
 import { data } from "autoprefixer";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   //capturing the changes -
@@ -12,6 +12,10 @@ export default function SignUp() {
   //For loadinf effect and error
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  //Navigating to home page if no errors in Sign-in login
+  //for that import useNavigate and then initialise it
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     // ...formData -- the drip operator to save previous data
@@ -41,7 +45,7 @@ export default function SignUp() {
         setError(true);
         return;
       }
-
+      navigate("/sign-in");
       // console.log(data);
     } catch (error) {
       setLoading(false);

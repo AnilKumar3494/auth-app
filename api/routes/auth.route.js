@@ -1,5 +1,5 @@
 import Express from "express";
-import { authSignUp } from "../controllers/auth.controller.js";
+import { authSignIn, authSignUp } from "../controllers/auth.controller.js";
 
 const route = Express.Router();
 
@@ -10,5 +10,6 @@ const route = Express.Router();
 //so, inorder to use JSON we need to add app.use(express.json) (i guess) in our inddex.js file
 //for post method we cannot use the terminal
 route.post('/sign-up', authSignUp)
+route.post('/sign-in', authSignIn)
 
 export default route

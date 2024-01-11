@@ -75,11 +75,11 @@ app.use('/api/auth', authRoute)
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
     const message = err.message || "Internal Servor Error";
-    const personalMsg = "This is the error catched by Middleware"
+    // const personalMsg = "This is the error catched by Middleware"
     return res.status(statusCode).json({
         success: false,
         // personalMsg: personalMsg,
-        personalMsg,
+        // personalMsg,
         error: message,
         statusCode: statusCode,
     })

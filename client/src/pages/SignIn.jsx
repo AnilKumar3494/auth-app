@@ -1,6 +1,23 @@
-import { data } from "autoprefixer";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+/*
+//useNavigate to move to other pages when clicked
+import {
+  signInStart,
+  signInSuccess,
+  signInFailure,
+} from "../redux/user/userSlice.js";
+//using them in submitHandler
+//useDispatch is needed and initalize it as const useDipatch = useDipatch()
+import { useDispatch, useSelector } from "react-redux";
+*/
+
+import {
+  signInStart,
+  signInSuccess,
+  signInFailure,
+} from "../redux/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function SignIn() {
   //capturing the changes -
@@ -9,13 +26,25 @@ export default function SignIn() {
   //3rd - but before 2nd step we need save the changes inside a piece of state so for the we use const [formData, setFormData] = useState({})
   //saving all of them in formData state
   const [formData, setFormData] = useState({});
-  //For loadinf effect and error
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+
+  /*Changing due to redux
+    //For loading effect and error
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
+ 
+    Instead of using useState and setting error and loading
+    Destruture loading and error and use useSelector((state) => state.user)
+    user is the name of our slice in userSlice
+  */
+  const { loading, error } = useSelector((state) => state.user);
+  console.log(error);
+
   //Navigating to home page if no errors in Sign-in login
   //for that import useNavigate and then initialise it
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
+  //Intialzing useDispatch
+  const dispatch = useDispatch();
   const handleChange = (e) => {
     // ...formData -- the drip operator to save previous data
     //[e.taget.id] is the username and e.target.value would be the data
@@ -25,10 +54,24 @@ export default function SignIn() {
 
   //now sending our data from frontend to backend
   const submitHandler = async (e) => {
-    setLoading(true);
-    setError(false);
+    e.preventDefault();
+    /* 
+    Removing these as we will be using userSlice and redux
+    import them from userSlice
+      setLoading(true);
+      setError(false);
+    */
+
     try {
-      e.preventDefault();
+      //UNCOMMENT THIS LATER
+      // e.preventDefault();
+      /*
+        setLoading(true);
+        setError(false);
+      before request initialize signin success this makes the loading true
+      */
+      dispatch(signInStart());
+
       //from index.js authRoute
       const res = await fetch("/api/auth/sign-in", {
         method: "POST",
@@ -39,16 +82,33 @@ export default function SignIn() {
       });
       const data = await res.json();
       // console.log(data);
+      /* 
+      changes after redux
+      instead of setting       
       setLoading(false);
+      we can use the signInSuccess from userSlice
+      dispatch(signInSucces(data))
+      */
+
       if (data.success === false) {
+        /*
         setError(true);
+        using userSlice
+        when data.successs not false
+        */
+        dispatch(signInFailure(data));
         return;
       }
+      dispatch(signInSuccess(data));
       navigate("/");
       // console.log(data);
     } catch (error) {
+      /*
       setLoading(false);
       setError(true);
+      changed as we are using redux
+      */
+      dispatch(signInFailure(error));
     }
   };
   //=====FRONT_END======
@@ -87,7 +147,9 @@ export default function SignIn() {
         </Link>
       </div>
 
-      <p className="text-red-600 pt-4">{error && "Something went wrong!"}</p>
+      <p className="text-red-600 pt-4">
+        {error ? error.message || "Something went wrong!" : ""}
+      </p>
     </div>
   );
 }

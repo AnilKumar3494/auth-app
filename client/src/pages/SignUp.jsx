@@ -1,6 +1,7 @@
 import { data } from "autoprefixer";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import OAuth from "../components/OAuth";
 
 export default function SignUp() {
   //capturing the changes -
@@ -87,6 +88,7 @@ export default function SignUp() {
         >
           {loading ? "Loading" : "Sign Up"}
         </button>
+        <OAuth />
       </form>
 
       <div className="flex gap-1">

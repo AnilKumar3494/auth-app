@@ -18,6 +18,7 @@ import {
   signInFailure,
 } from "../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import OAuth from "../components/OAuth";
 
 export default function SignIn() {
   //capturing the changes -
@@ -138,6 +139,7 @@ export default function SignIn() {
         >
           {loading ? "Loading" : "Sign In"}
         </button>
+        <OAuth></OAuth>
       </form>
 
       <div className="flex gap-1">

@@ -11,5 +11,5 @@ const route = Express.Router();
 //for post method we cannot use the terminal
 route.post('/sign-up', authSignUp)
 route.post('/sign-in', authSignIn)
-
+route.post('/google',)
 export default route

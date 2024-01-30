@@ -64,7 +64,7 @@ export default function SignIn() {
     */
 
     try {
-      //UNCOMMENT THIS LATER
+      //UNCOMMENT THIS LATER if required
       // e.preventDefault();
       /*
         setLoading(true);
@@ -101,7 +101,7 @@ export default function SignIn() {
         return;
       }
       dispatch(signInSuccess(data));
-      navigate("/");
+      navigate("/"); //to navtigate got this from useNavigate()
       // console.log(data);
     } catch (error) {
       /*
@@ -135,14 +135,14 @@ export default function SignIn() {
 
         <button
           disabled={loading}
-          className="bg-slate-700 text-white font-semibold  p-2 rounded-xl uppercase hover:opacity-95 disabled:opacity-75"
+          className="bg-slate-700 text-white p-2 rounded-xl uppercase hover:opacity-95 disabled:opacity-75"
         >
           {loading ? "Loading" : "Sign In"}
         </button>
         <OAuth></OAuth>
       </form>
 
-      <div className="flex gap-1">
+      <div className="flex gap-1 sign-in-up">
         <p>Dont have an account?</p>
         <Link to="/sign-up">
           <p className="text-blue-500 font-semibold">Sign-up</p>

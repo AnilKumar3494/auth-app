@@ -1,13 +1,17 @@
-// import { configureStore } from '@reduxjs/toolkit'
-// import userReducer from './user/userSlice'
+/*
+Setting up redux - npm i @reduxjs/toolkit react-redux
 
-// export const store = configureStore({
-//     reducer: { user: userReducer },
-//     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-//         serializableCheck: false
-//     }),
-// })
+import { configureStore } from '@reduxjs/toolkit'
+import userReducer from './user/userSlice'
 
+export const store = configureStore({
+    reducer: { user: userReducer },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        //Prevents errors when using reducers
+        serializableCheck: false
+    }),
+})
+*/
 
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import userReducer from './user/userSlice'
@@ -19,7 +23,6 @@ const persistConfig = {
     key: 'root',
     version: 1,
     storage,
-
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 

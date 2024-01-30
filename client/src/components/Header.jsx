@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <div className="bg-slate-200 py-3">
+    <div className="bg-orange-700 py-5 header">
       <div className="flex justify-between mx-auto px-6">
         {/* //This link also makes header into anchor link */}
         <Link to="/">

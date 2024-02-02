@@ -38,7 +38,7 @@ export default function SignIn() {
     user is the name of our slice in userSlice
   */
   const { loading, error } = useSelector((state) => state.user);
-  console.log(error);
+  // console.log(error);
 
   //Navigating to home page if no errors in Sign-in login
   //for that import useNavigate and then initialise it
@@ -110,8 +110,10 @@ export default function SignIn() {
       changed as we are using redux
       */
       dispatch(signInFailure(error));
+      console.log(error.message);
     }
   };
+
   //=====FRONT_END======
   return (
     <div className="max-w-xl mx-auto p-4">
@@ -150,7 +152,7 @@ export default function SignIn() {
       </div>
 
       <p className="text-red-600 pt-4">
-        {error ? error.message || "Something went wrong!" : ""}
+        {error ? error.message || "Wrong Credentials" : ""}
       </p>
     </div>
   );

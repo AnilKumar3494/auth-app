@@ -11,6 +11,11 @@
   color-scheme: dark light;
 }
 
+input {
+  color: black;
+  outline: none;
+}
+
 body {
   background: rgb(59, 59, 59);
 }
@@ -19,7 +24,9 @@ input::placeholder {
   color: rgb(67, 65, 65);
 }
 
-input:hover {
+input:hover,
+input:active,
+input:focus {
   border: 2px solid blueviolet;
 }
 

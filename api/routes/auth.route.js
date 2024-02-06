@@ -1,5 +1,5 @@
 import Express from "express";
-import { authSignIn, authSignUp } from "../controllers/auth.controller.js";
+import { authGoogle, authSignIn, authSignUp } from "../controllers/auth.controller.js";
 
 const route = Express.Router();
 
@@ -11,5 +11,5 @@ const route = Express.Router();
 //for post method we cannot use the terminal
 route.post('/sign-up', authSignUp)
 route.post('/sign-in', authSignIn)
-route.post('/google',)
+route.post('/google', authGoogle)
 export default route

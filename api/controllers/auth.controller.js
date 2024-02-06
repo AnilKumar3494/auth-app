@@ -81,7 +81,7 @@ export const authSignIn = async (req, res, next) => {
 }
 //Backend validation end
 
-//Google Authentication
+//Google Authentication for auth.route.js
 export const authGoogle = async (req, res, next) => {
     try {
         const user = await User.findOne({ email: req.body.email })
@@ -91,23 +91,32 @@ export const authGoogle = async (req, res, next) => {
             const expiryDate = new Date(Date.now() + 360000)
             res.cookie('access_token', token, { httpOnly: true, expires: expiryDate })
         } else {
+            //Creating a random password for user - as they are loggin in with google and no password will be asked then
+            //Also add profilePicture in user.model.js
             const generatedPassword = Math.random().toString(36).slice(-8) + Math.random().toString(36).slice(-8)
+            //Hashing generated password
             const hashPassword = bcryptjs.hashSync(generatedPassword, 10)
+
+
+            //updating user
             const newUser = new User({
-                username: req.body.name.split(" ").join("").toLowerCase() + Math.floor(Math.random * 10000).toString(),
+                //Modifying username as users might have same google user name, so we modify it
+                username: req.body.name.split(" ").join("").toLowerCase() + Math.floor(Math.random() * 10000).toString(),
                 email: req.body.email,
                 password: hashPassword,
                 profilePicture: req.body.photo
             })
+            //saving the user to database
             await newUser.save()
+
+            //ceating token
             const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET)
             const { password: hashPassword2, ...rest } = newUser._doc
             const expiryDate = new Date(Date.now() + 360000);
             res.cookie('access_token', token, {
                 httpOnly: true,
                 expires: expiryDate,
-            })
-
+            }).status(200).json(rest)
         }
     } catch (error) {
         next(error)

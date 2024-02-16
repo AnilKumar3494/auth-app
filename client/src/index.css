@@ -24,6 +24,10 @@ input::placeholder {
   color: rgb(67, 65, 65);
 }
 
+input {
+  border: 2px solid transparent;
+}
+
 input:hover,
 input:active,
 input:focus {

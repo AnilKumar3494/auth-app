@@ -5,6 +5,7 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Profile from "./pages/Profile";
 import Header from "./components/Header";
+import Privaterouter from "./components/Privaterouter";
 
 export default function App() {
   return (
@@ -15,7 +16,11 @@ export default function App() {
         <Route path="/about" element={<About />}></Route>
         <Route path="/sign-in" element={<SignIn />}></Route>
         <Route path="/sign-up" element={<SignUp />}></Route>
-        <Route path="/profile" element={<Profile />}></Route>
+
+        {/* Covering the profile path with this custom component private route that only lets logged in user to see their profile */}
+        <Route element={<Privaterouter />}>
+          <Route path="/profile" element={<Profile />}></Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );

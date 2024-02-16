@@ -33,7 +33,7 @@ export default function OAuth() {
       const data = await res.json();
       //adding this to redux for signinstart - success for this we need to import dispatch from react-redux
       dispatch(signInSuccess(data)); //now using the google login data we create a new user and save in mongDB
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.log("Cound not connent to Google", error);
     }

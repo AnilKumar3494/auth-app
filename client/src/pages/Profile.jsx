@@ -62,7 +62,7 @@ export default function Profile() {
         />
 
         <img
-          src={currentUser.profilePicture}
+          src={formData.profilePicture || currentUser.profilePicture}
           alt="Profile Picture"
           className="h-24 w-24 rounded-full cursor-pointer"
           onClick={() => fileRef.current.click()}
@@ -92,6 +92,11 @@ export default function Profile() {
           type="email"
           placeholder="e-mail"
           className="bg-slate-100 rounded-lg p-2 w-80"
+        />
+        <input
+          type="password"
+          className="bg-slate-200 p-2 w-80 rounded-lg placeholder-gray-600 placeholder-opacity-75"
+          placeholder="Password"
         />
 
         {/* <input

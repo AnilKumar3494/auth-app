@@ -4,6 +4,10 @@ import mongoose from "mongoose";
 //Craete using method from mongoose Schema
 // these schema only accept strings
 const userSchema = new mongoose.Schema({
+    profilePicture: {
+        type: String,
+        default: "https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2264922221.jpg"
+    },
     username: {
         type: String,
         required: true,
@@ -18,10 +22,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    profilePicture: {
-        type: String,
-        default: "https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2264922221.jpg"
-    }
+
 }, { timestamps: true })
 
 //timestamps can be later used to collect and store user data creation time and edit time

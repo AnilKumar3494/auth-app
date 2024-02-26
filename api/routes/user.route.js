@@ -1,7 +1,8 @@
 // /we need express so import it
 
 import Express from "express";
-import { test } from "../controllers/user.controller.js";
+import { test, updateUser } from "../controllers/user.controller.js";
+import { verifyToken } from "../utils/verifyUser.js";
 
 
 //making the route
@@ -18,5 +19,9 @@ const route = Express.Router();
 
 //use test from the controller
 route.get('/', test)
+
+//route for updating user profile
+//use are going to use id and check if user is autheticated to update or not
+route.post("/update/:id", verifyToken, updateUser)
 
 export default route

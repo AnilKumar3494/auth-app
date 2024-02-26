@@ -101,10 +101,10 @@ export const authGoogle = async (req, res, next) => {
             //updating user
             const newUser = new User({
                 //Modifying username as users might have same google user name, so we modify it
+                profilePicture: req.body.photo,
                 username: req.body.name.split(" ").join("").toLowerCase() + Math.floor(Math.random() * 10000).toString(),
                 email: req.body.email,
                 password: hashPassword,
-                profilePicture: req.body.photo
             })
             //saving the user to database
             await newUser.save()

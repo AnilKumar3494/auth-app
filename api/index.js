@@ -20,6 +20,10 @@ import userRoute from './routes/user.route.js'
 //authRoute import from auth.user
 import authRoute from './routes/auth.route.js'
 
+//importing cookie-parsing that is installed from npm i cookie-parse
+import cookieParser from 'cookie-parser';
+
+
 
 //DATABASE
 //--Connecting out Database created in the MongoDB website
@@ -69,6 +73,10 @@ app.use("/api/user", userRoute)
 
 //this is sign-up API route - we seprate user from auth as it is very important 
 app.use('/api/auth', authRoute)
+
+// //using cookie-parese
+app.use(cookieParser());
+
 
 //creating a middleware to catch errors, responses, requests and next
 //using next we can directly get the error and use it where needed

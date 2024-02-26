@@ -93,6 +93,11 @@ export default function Profile() {
           placeholder="e-mail"
           className="bg-slate-100 rounded-lg p-2 w-80"
         />
+        <input
+          type="password"
+          className="bg-slate-200 p-2 w-80 rounded-lg placeholder-gray-600 placeholder-opacity-75"
+          placeholder="Password"
+        />
 
         {/* <input
           type="password"
